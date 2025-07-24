@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ARG - Compte à rebours</title>
+  <title>Countdown</title>
   <style>
     html, body {
       margin: 0;
@@ -39,15 +39,13 @@
 
   <video id="bgvid" autoplay muted loop playsinline>
     <source src="video.mp4" type="video/mp4">
-    Votre navigateur ne supporte pas la vidéo en fond.
+    Your browser does not support background video.
   </video>
 
-  <div id="countdown">Chargement…</div>
+  <div id="countdown">Loading…</div>
 
   <script>
-    // 🕓 Date cible (YYYY-MM-DDTHH:MM:SS)
     const targetDate = new Date("2025-10-31T23:59:59").getTime();
-
     const countdown = document.getElementById("countdown");
 
     setInterval(() => {
@@ -55,7 +53,7 @@
       const distance = targetDate - now;
 
       if (distance <= 0) {
-        countdown.innerHTML = "C'EST L'HEURE.";
+        countdown.innerHTML = "IT'S TIME.";
         return;
       }
 
@@ -64,7 +62,7 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdown.innerHTML = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }, 1000);
   </script>
 
