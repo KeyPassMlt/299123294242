@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>ARG - Compte à rebours</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+      color: red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5vw;
+    }
+
+    #countdown {
+      position: absolute;
+      z-index: 2;
+      text-align: center;
+      text-shadow: 0 0 10px black;
+    }
+
+    video#bgvid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: 1;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <video id="bgvid" autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo en fond.
+  </video>
+
+  <div id="countdown">Chargement…</div>
+
+  <script>
+    // 🕓 Date cible (YYYY-MM-DDTHH:MM:SS)
+    const targetDate = new Date("2025-10-31T23:59:59").getTime();
+
+    const countdown = document.getElementById("countdown");
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        countdown.innerHTML = "C'EST L'HEURE.";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+
+</body>
+</html>
